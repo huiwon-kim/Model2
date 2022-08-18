@@ -21,9 +21,11 @@ public class BoardListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 컨트롤러의 역할
 		// 1. 요청 분석 (요청을받아들여서 분석)
-		final int rowPerPage = 10;
+		int rowPerPage = 3;
 		
-		
+		if(request.getParameter("rowPerPage") !=null) {
+			rowPerPage = Integer.parseInt(request.getParameter("rowPerPage"));
+		}
 		
 		int currentPage = 1;
 		if(request.getParameter("currentPage") !=null) {
@@ -42,10 +44,15 @@ public class BoardListController extends HttpServlet {
 		//						└리스트 보낼건데 값은 ┘ 여기에 있어
 		
 		request.setAttribute("currentPage", map.get("currentPage"));
+		System.out.print(currentPage+"<-currentPage");
 		
 		// 3. 뷰 포워딩 (뷰가 있다면)								★ , ★ 2개(15행 45행)는 이름 통일하는거 선생님이 좋아하신대
 		request.getRequestDispatcher("/WEB-INF/view/boardList.jsp").forward(request, response);
 	
+		
+		
+		
+		
 	}
 
 }

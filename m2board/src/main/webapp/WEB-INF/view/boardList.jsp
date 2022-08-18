@@ -15,7 +15,7 @@
 	
 	
 	<div>											<!--겟은 ? 포스트는 액션 -->
-		<a href="${pageContext.request.contextPath}/addBoard.jsp">
+		<a href="${pageContext.request.contextPath}/insertBoard">
 			글쓰기
 		</a>
 	</div>
@@ -36,6 +36,7 @@
 		
 		<tbody>
 			<c:forEach var="b" items="${list}">
+			<tr>
 				<td> ${b.boardNo} </td> <!--  실제 호출? >>> b.getboardNo() -->
 				<td> 
 					<a href="${pageContext.request.contextPath}/boardOne?boardNo=${b.boardNo}">
@@ -47,6 +48,7 @@
 				<td> ${b.boardView} </td>
 				<td> ${b.boardNice} </td>
 				<!--  이건 vo의 그 이름 따라서 똑같이 적기 -->
+				</tr>
 			</c:forEach>
 		</tbody>
 		

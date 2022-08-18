@@ -3,6 +3,7 @@ package vo;
 public class Board {
 	private int boardNo;
 	private String memberId;
+	private String boardPw;
 	private String boardTitle;
 	private String boardText;
 	private int boardNice;
@@ -19,6 +20,12 @@ public class Board {
 
 	
 	
+	public String getBoardPw() {
+		return boardPw;
+	}
+	public void setBoardPw(String boardPw) {
+		this.boardPw = boardPw;
+	}
 	public String getMemberId() {
 		return memberId;
 	}
@@ -54,6 +61,12 @@ public class Board {
 	}
 	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
+	}
+	@Override
+	public String toString() {
+		return "Board [boardNo=" + boardNo + ", memberId=" + memberId + ", boardPw=" + boardPw + ", boardTitle="
+				+ boardTitle + ", boardText=" + boardText + ", boardNice=" + boardNice + ", boardView=" + boardView
+				+ ", createDate=" + createDate + "]";
 	}
 	
 	

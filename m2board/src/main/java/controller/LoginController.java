@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import service.IMemberService;
+import service.MemberService;
 import vo.Member;
 
 
@@ -23,12 +24,13 @@ public class LoginController extends HttpServlet { // 서블릿이라 내장객�
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginMember") != null ) {// 로그인된 상태
-			response.sendRedirect(request.getContextPath() +"/index");
+			response.sendRedirect(request.getContextPath() +"/index"); // 그 서블릿 실행시킬때는 이렇게
 			return;
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+		//													┌뷰안에 직접 jsp 갈 때는 이런식
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
 		// 리퀘스트객체 생성 & 포워드는 내 안이라서 컨텍트명이 필요가 없대
-	
+		rd.forward(request, response);
 	}
 
 
@@ -46,14 +48,25 @@ public class LoginController extends HttpServlet { // 서블릿이라 내장객�
 		
 		
 			request.setCharacterEncoding("utf-8");
-			String id = request.getParameter("id");
-			String pw = request.getParameter("pw");
+			String memberId = request.getParameter("memberId");
+			String memberPass = request.getParameter("memberPass");
 			Member paramMember = new Member();
 			
-			// new 해주고
+			Member parammember = new Member();
+			parammember.setMemberId(memberId);
+			parammember.setMemberPass(memberPass);
+			
+			System.out.println(memberId+ "<-memberId");
+        	System.out.println(memberPass+ "<-memberPass");
+			
+			MemberService memberService = new MemberService();
+			
+				// new 해주고
 			Member member = memberService.getMemberLogin(paramMember);
 			//		└리턴타입
-			if(member==null) {
+			
+			
+			if(member == null) {
 				// 로긴실패
 				System.out.println("로그인실패");
 				response.sendRedirect(request.getContextPath() +"/loginController");
@@ -64,8 +77,11 @@ public class LoginController extends HttpServlet { // 서블릿이라 내장객�
 				// 로긴성공 >>> 세션에 집어넣기 >>> 근데 서블릿에는 세션이 없엉 
 				// 매개변수로 세션을 받아야하는데 리퀘스트에는 세션을 참조할 수잇엉
 				// 세션이 생기면 세션안에 리퀘스트가 생기는거거			
-			HttpSession session = request.getSession(); // 이러면 ㅅ션 꺼낸거래
-			session.setAttribute("loginMember", member);
+			session = request.getSession(); // 이러면 ㅅ션 꺼낸거래
+			session.setAttribute("loginMember", parammember);
+	
+			
+			//Syste m.out.println(session);
 			response.sendRedirect(request.getContextPath() +"/index");
 			
 			
