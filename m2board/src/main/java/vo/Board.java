@@ -2,7 +2,7 @@ package vo;
 
 public class Board {
 	private int boardNo;
-	private String boardWriter;
+	private String memberId;
 	private String boardTitle;
 	private String boardText;
 	private int boardNice;
@@ -16,11 +16,14 @@ public class Board {
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
-	public String getBoardWriter() {
-		return boardWriter;
+
+	
+	
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setBoardWriter(String boardWriter) {
-		this.boardWriter = boardWriter;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getBoardTitle() {
 		return boardTitle;

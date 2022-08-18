@@ -39,13 +39,14 @@
 				<td> ${b.boardNo} </td> <!--  실제 호출? >>> b.getboardNo() -->
 				<td> 
 					<a href="${pageContext.request.contextPath}/boardOne?boardNo=${b.boardNo}">
-						${b.title} 
+						${b.boardTitle} 
 					</a>
 				</td>
-				<td> ${b.writer} </td>
+				<td> ${b.memberId} </td>
 				<td> ${b.createDate} </td>
-				<td> ${b.read} </td>
-				<td> ${b.nice} </td>
+				<td> ${b.boardView} </td>
+				<td> ${b.boardNice} </td>
+				<!--  이건 vo의 그 이름 따라서 똑같이 적기 -->
 			</c:forEach>
 		</tbody>
 		

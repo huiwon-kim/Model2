@@ -15,6 +15,7 @@ public interface IBoardDao {
 	
 	List<Map<String, Object>> insertBoard(Connection conn, Board board);
 	
-	int selectBoardCnt(Connection conn) throws SQLException;
+
+	int selectBoardCnt(Connection conn, int rowPerPage) throws SQLException;
 	
 }

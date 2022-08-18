@@ -26,14 +26,12 @@ public class BoardService implements IBoardService {
 			
 			map = new HashMap<>();
 			// 이게 아님map = (Map<String, Object>) boardDao.selectBoardListByPage(conn, rowPerPage, beginRow);
-			map.put( ,boardDao.selectBoardListByPage(conn, rowPerPage, beginRow));
+			map.put("list" ,boardDao.selectBoardListByPage(conn, rowPerPage, beginRow));
 			
 			
 			System.out.print(map +"<-map");
 			
-			if(map ==null) {
-				throw new Exception();	
-			}
+		
 			conn.commit();
 			
 		} catch (Exception e) {
