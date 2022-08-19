@@ -5,14 +5,38 @@ public class Member {
 	private String memberPass;
 	private String memberName;
 	private String memberGender;
+	private String memberAdd;
+	private String memberdetailAdd;
+	private String createDate;
 	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Member [memberId=" + memberId + ", memberPass=" + memberPass + ", memberName=" + memberName
+				+ ", memberGender=" + memberGender + ", memberAdd=" + memberAdd + ", memberdetailAdd=" + memberdetailAdd
+				+ ", createDate=" + createDate + "]";
+	}
+	public String getMemberAdd() {
+		return memberAdd;
+	}
+	public void setMemberAdd(String memberAdd) {
+		this.memberAdd = memberAdd;
+	}
+	public String getMemberdetailAdd() {
+		return memberdetailAdd;
+	}
+	public void setMemberdetailAdd(String memberdetailAdd) {
+		this.memberdetailAdd = memberdetailAdd;
+	}
 	public String getMemberGender() {
 		return memberGender;
 	}
 	public void setMemberGender(String memberGender) {
 		this.memberGender = memberGender;
 	}
-	private String createDate;
+
 	public String getMemberId() {
 		return memberId;
 	}

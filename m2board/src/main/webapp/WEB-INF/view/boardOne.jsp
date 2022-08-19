@@ -39,8 +39,13 @@
 				<td> ${b.boardNice} </td>
 				<!--  이건 vo의 그 이름 따라서 똑같이 적기 -->
 				</tr>
+				
 				<tr>
 				<td>${b.boardText} 	</td>
+				</tr>
+				
+				<tr>
+					<button type="submit" id="nice" name="nice"> 좋아요 </button>
 				</tr>
 			</c:forEach>
 			

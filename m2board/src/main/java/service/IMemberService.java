@@ -1,5 +1,7 @@
 package service;
 
+import java.sql.Connection;
+
 import vo.Member;
 
 public interface IMemberService {
@@ -8,6 +10,16 @@ public interface IMemberService {
 	// 컨트롤러쪽은 매개값은 vo로 묶어서 보내주는게 좋대
 	// 여러개의 매개값으로 넘기려면 vo로 묶어서 해주거나 Map으로 묶어주거나 
 	// String  id, pw 말고 묶어서 보내주자 커늩롤러로
+	
+	
+	
+	// 회원정보 수정하기
+	int modifyMember(Member parammember);
+	
+	// 회원가입
+	int addMember(Member parammember);
+	
+	// 로그인
 	Member getMemberLogin(Member paramMember);
 	
 }

@@ -50,7 +50,7 @@ public class LoginController extends HttpServlet { // 서블릿이라 내장객�
 			request.setCharacterEncoding("utf-8");
 			String memberId = request.getParameter("memberId");
 			String memberPass = request.getParameter("memberPass");
-			Member paramMember = new Member();
+
 			
 			Member parammember = new Member();
 			parammember.setMemberId(memberId);
@@ -61,12 +61,12 @@ public class LoginController extends HttpServlet { // 서블릿이라 내장객�
 			
 			MemberService memberService = new MemberService();
 			
-				// new 해주고
-			Member member = memberService.getMemberLogin(paramMember);
+			// new 해주고
+			Member loginmember = memberService.getMemberLogin(parammember);
 			//		└리턴타입
+			System.out.println(loginmember+"<-session의 member");
 			
-			
-			if(member == null) {
+			if(loginmember == null) {
 				// 로긴실패
 				System.out.println("로그인실패");
 				response.sendRedirect(request.getContextPath() +"/loginController");
@@ -77,9 +77,10 @@ public class LoginController extends HttpServlet { // 서블릿이라 내장객�
 				// 로긴성공 >>> 세션에 집어넣기 >>> 근데 서블릿에는 세션이 없엉 
 				// 매개변수로 세션을 받아야하는데 리퀘스트에는 세션을 참조할 수잇엉
 				// 세션이 생기면 세션안에 리퀘스트가 생기는거거			
-			session = request.getSession(); // 이러면 ㅅ션 꺼낸거래
-			session.setAttribute("loginMember", parammember);
+			//session = request.getSession(); // 이러면 ㅅ션 꺼낸거래
+			session.setAttribute("loginMember", loginmember);
 	
+			System.out.println(session+"<-session");
 			
 			//Syste m.out.println(session);
 			response.sendRedirect(request.getContextPath() +"/index");

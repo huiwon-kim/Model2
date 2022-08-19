@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import vo.Board;
+import vo.Nice;
 
 public class BoardDao implements IBoardDao {
 
@@ -74,6 +75,85 @@ public class BoardDao implements IBoardDao {
 		
 		return list;
 	}
+	
+	
+	// 좋아요를 보여주는?
+	public int viewnice(Connection conn, Board board) {
+		
+		/*
+		SELECT b.board_no, b.board_title, t.cnt
+		FROM board b
+		INNER JOIN
+		(SELECT board_no, COUNT(*) cnt
+		FROM nice
+		GROUP BY board_no) t
+		ON b.board_no = t.board_no		 
+		  
+		 */
+		int result = 0;
+		
+		String sql ="SELECT b.board_no, b.board_title, t.cnt\r\n"
+				+ "FROM board b\r\n"
+				+ "INNER JOIN\r\n"
+				+ "(SELECT board_no, COUNT(*) cnt\r\n"
+				+ "FROM nice\r\n"
+				+ "GROUP BY board_no) t\r\n"
+				+ "ON b.board_no = t.board_no		";
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		
+		
+		try {
+			stmt = conn.prepareStatement(sql);
+			
+			
+			
+		} finally {
+			
+			
+		}
+		
+		
+		
+		
+		return result;
+		
+	}
+	
+	
+	// 좋아요 업데이트
+	public int insertNice(Connection conn, Board board, Nice nice) {
+		int row = 0;
+		
+		/*
+		 UPDATE board 
+		 SET
+		 board_nice=board_nice+1 
+		 WHERE board_no=?		  
+		  */
+		
+		String sql = "	UPDATE board"
+				+ "		 SET"
+				+ "		 board_nice=board_nice+1"
+				+ "		 WHERE board_no=?	";
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, board.getBoardNo());			
+			row = stmt.executeUpdate();
+			
+			System.out.println(row +"<-insertNice의 row");
+		} finally {
+			
+		}
+		
+	
+	}
+	
 	
 	
 	// 게시글입력
